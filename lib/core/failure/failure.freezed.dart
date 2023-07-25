@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) serverFailure,
+    required TResult Function(String? message) serverFailure,
     required TResult Function() clientFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? serverFailure,
+    TResult? Function(String? message)? serverFailure,
     TResult? Function()? clientFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? serverFailure,
+    TResult Function(String? message)? serverFailure,
     TResult Function()? clientFailure,
     required TResult orElse(),
   }) =>
@@ -80,7 +80,7 @@ abstract class _$$_serverFailureCopyWith<$Res> {
           _$_serverFailure value, $Res Function(_$_serverFailure) then) =
       __$$_serverFailureCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -94,13 +94,13 @@ class __$$_serverFailureCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? message = freezed,
   }) {
     return _then(_$_serverFailure(
-      null == message
+      freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -111,7 +111,7 @@ class _$_serverFailure implements _serverFailure {
   const _$_serverFailure(this.message);
 
   @override
-  final String message;
+  final String? message;
 
   @override
   String toString() {
@@ -138,7 +138,7 @@ class _$_serverFailure implements _serverFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) serverFailure,
+    required TResult Function(String? message) serverFailure,
     required TResult Function() clientFailure,
   }) {
     return serverFailure(message);
@@ -147,7 +147,7 @@ class _$_serverFailure implements _serverFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? serverFailure,
+    TResult? Function(String? message)? serverFailure,
     TResult? Function()? clientFailure,
   }) {
     return serverFailure?.call(message);
@@ -156,7 +156,7 @@ class _$_serverFailure implements _serverFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? serverFailure,
+    TResult Function(String? message)? serverFailure,
     TResult Function()? clientFailure,
     required TResult orElse(),
   }) {
@@ -199,9 +199,9 @@ class _$_serverFailure implements _serverFailure {
 }
 
 abstract class _serverFailure implements MainFailure {
-  const factory _serverFailure(final String message) = _$_serverFailure;
+  const factory _serverFailure(final String? message) = _$_serverFailure;
 
-  String get message;
+  String? get message;
   @JsonKey(ignore: true)
   _$$_serverFailureCopyWith<_$_serverFailure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -245,7 +245,7 @@ class _$_clientFailure implements _clientFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) serverFailure,
+    required TResult Function(String? message) serverFailure,
     required TResult Function() clientFailure,
   }) {
     return clientFailure();
@@ -254,7 +254,7 @@ class _$_clientFailure implements _clientFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? serverFailure,
+    TResult? Function(String? message)? serverFailure,
     TResult? Function()? clientFailure,
   }) {
     return clientFailure?.call();
@@ -263,7 +263,7 @@ class _$_clientFailure implements _clientFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? serverFailure,
+    TResult Function(String? message)? serverFailure,
     TResult Function()? clientFailure,
     required TResult orElse(),
   }) {

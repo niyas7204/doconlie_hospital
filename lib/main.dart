@@ -1,7 +1,17 @@
-import 'package:doconline_hospital/logIn/bloc/login/log_in_bloc.dart';
-import 'package:doconline_hospital/logIn/data/dataprovider/login_impl.dart';
-import 'package:doconline_hospital/logIn/presentation/home.dart';
-import 'package:doconline_hospital/logIn/presentation/login_page.dart';
+import 'package:doconline_hospital/login/bloc/booking/booking_bloc.dart';
+import 'package:doconline_hospital/login/bloc/departmet/department_bloc.dart';
+import 'package:doconline_hospital/login/bloc/dashboard/dashboard_bloc.dart';
+import 'package:doconline_hospital/login/bloc/doctors/getdoctots_bloc.dart';
+import 'package:doconline_hospital/login/bloc/hospitalprofile/hospital_profile_bloc.dart';
+import 'package:doconline_hospital/login/bloc/login/log_in_bloc.dart';
+import 'package:doconline_hospital/login/data/dataprovider/getbookingimpl.dart';
+import 'package:doconline_hospital/login/data/dataprovider/getdashboard_impl.dart';
+import 'package:doconline_hospital/login/data/dataprovider/getdepartment.dart';
+import 'package:doconline_hospital/login/data/dataprovider/getdoctors_impl.dart';
+import 'package:doconline_hospital/login/data/dataprovider/hospitalprofile.dart';
+import 'package:doconline_hospital/login/data/dataprovider/login_impl.dart';
+import 'package:doconline_hospital/login/presentation/home.dart';
+import 'package:doconline_hospital/login/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +31,22 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LogInBloc(LogInImplimentation()),
         ),
+        BlocProvider(
+          create: (context) => DashboardBloc(GetDashBoardImplimentation()),
+        ),
+        BlocProvider(
+          create: (context) => GetdoctorsBloc(GetDoctorsImplimentation()),
+        ),
+        BlocProvider(
+          create: (context) => DepartmentBloc(GetDepartmentImplimentation()),
+        ),
+        BlocProvider(
+          create: (context) => BookingBloc(BookingImplimentation()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              HospitalProfileBloc(HospitalProfileImplimentation()),
+        ),
       ],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
@@ -36,7 +62,7 @@ class MyApp extends StatelessWidget {
                   return const LogInPage();
                 }
               } else {
-                return LogInPage();
+                return const LogInPage();
               }
             },
           ),

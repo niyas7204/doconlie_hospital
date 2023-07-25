@@ -3,6 +3,6 @@ part 'failure.freezed.dart';
 
 @freezed
 class MainFailure with _$MainFailure {
-  const factory MainFailure.serverFailure(String message) = _serverFailure;
+  const factory MainFailure.serverFailure(String? message) = _serverFailure;
   const factory MainFailure.clientFailure() = _clientFailure;
 }
