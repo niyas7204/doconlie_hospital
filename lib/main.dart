@@ -10,7 +10,8 @@ import 'package:doconline_hospital/login/data/dataprovider/getdepartment.dart';
 import 'package:doconline_hospital/login/data/dataprovider/getdoctors_impl.dart';
 import 'package:doconline_hospital/login/data/dataprovider/hospitalprofile.dart';
 import 'package:doconline_hospital/login/data/dataprovider/login_impl.dart';
-import 'package:doconline_hospital/login/presentation/home.dart';
+import 'package:doconline_hospital/login/presentation/dashboard.dart';
+
 import 'package:doconline_hospital/login/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!) {
-                  return const HomePage();
+                  return const DashBoardPage();
                 } else {
                   return const LogInPage();
                 }

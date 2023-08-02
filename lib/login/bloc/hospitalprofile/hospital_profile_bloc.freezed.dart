@@ -19,24 +19,24 @@ mixin _$HospitalProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getHospitalProfile,
-    required TResult Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)
+    required TResult Function(String name, String about, String address,
+            String place, String mobile)
         editHospitalProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getHospitalProfile,
-    TResult? Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)?
+    TResult? Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getHospitalProfile,
-    TResult Function(XFile imageFile, String name, String about, String address,
-            String place, String mobile)?
+    TResult Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
     required TResult orElse(),
   }) =>
@@ -120,8 +120,8 @@ class _$_getHospitalProfile implements _getHospitalProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getHospitalProfile,
-    required TResult Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)
+    required TResult Function(String name, String about, String address,
+            String place, String mobile)
         editHospitalProfile,
   }) {
     return getHospitalProfile();
@@ -131,8 +131,8 @@ class _$_getHospitalProfile implements _getHospitalProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getHospitalProfile,
-    TResult? Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)?
+    TResult? Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
   }) {
     return getHospitalProfile?.call();
@@ -142,8 +142,8 @@ class _$_getHospitalProfile implements _getHospitalProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getHospitalProfile,
-    TResult Function(XFile imageFile, String name, String about, String address,
-            String place, String mobile)?
+    TResult Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
     required TResult orElse(),
   }) {
@@ -196,12 +196,7 @@ abstract class _$$_editHospitalProfileCopyWith<$Res> {
       __$$_editHospitalProfileCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {XFile imageFile,
-      String name,
-      String about,
-      String address,
-      String place,
-      String mobile});
+      {String name, String about, String address, String place, String mobile});
 }
 
 /// @nodoc
@@ -215,7 +210,6 @@ class __$$_editHospitalProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imageFile = null,
     Object? name = null,
     Object? about = null,
     Object? address = null,
@@ -223,10 +217,6 @@ class __$$_editHospitalProfileCopyWithImpl<$Res>
     Object? mobile = null,
   }) {
     return _then(_$_editHospitalProfile(
-      imageFile: null == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as XFile,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -255,15 +245,12 @@ class __$$_editHospitalProfileCopyWithImpl<$Res>
 
 class _$_editHospitalProfile implements _editHospitalProfile {
   const _$_editHospitalProfile(
-      {required this.imageFile,
-      required this.name,
+      {required this.name,
       required this.about,
       required this.address,
       required this.place,
       required this.mobile});
 
-  @override
-  final XFile imageFile;
   @override
   final String name;
   @override
@@ -277,7 +264,7 @@ class _$_editHospitalProfile implements _editHospitalProfile {
 
   @override
   String toString() {
-    return 'HospitalProfileEvent.editHospitalProfile(imageFile: $imageFile, name: $name, about: $about, address: $address, place: $place, mobile: $mobile)';
+    return 'HospitalProfileEvent.editHospitalProfile(name: $name, about: $about, address: $address, place: $place, mobile: $mobile)';
   }
 
   @override
@@ -285,8 +272,6 @@ class _$_editHospitalProfile implements _editHospitalProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_editHospitalProfile &&
-            (identical(other.imageFile, imageFile) ||
-                other.imageFile == imageFile) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.about, about) || other.about == about) &&
             (identical(other.address, address) || other.address == address) &&
@@ -296,7 +281,7 @@ class _$_editHospitalProfile implements _editHospitalProfile {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, imageFile, name, about, address, place, mobile);
+      Object.hash(runtimeType, name, about, address, place, mobile);
 
   @JsonKey(ignore: true)
   @override
@@ -309,37 +294,35 @@ class _$_editHospitalProfile implements _editHospitalProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getHospitalProfile,
-    required TResult Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)
+    required TResult Function(String name, String about, String address,
+            String place, String mobile)
         editHospitalProfile,
   }) {
-    return editHospitalProfile(imageFile, name, about, address, place, mobile);
+    return editHospitalProfile(name, about, address, place, mobile);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getHospitalProfile,
-    TResult? Function(XFile imageFile, String name, String about,
-            String address, String place, String mobile)?
+    TResult? Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
   }) {
-    return editHospitalProfile?.call(
-        imageFile, name, about, address, place, mobile);
+    return editHospitalProfile?.call(name, about, address, place, mobile);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getHospitalProfile,
-    TResult Function(XFile imageFile, String name, String about, String address,
-            String place, String mobile)?
+    TResult Function(String name, String about, String address, String place,
+            String mobile)?
         editHospitalProfile,
     required TResult orElse(),
   }) {
     if (editHospitalProfile != null) {
-      return editHospitalProfile(
-          imageFile, name, about, address, place, mobile);
+      return editHospitalProfile(name, about, address, place, mobile);
     }
     return orElse();
   }
@@ -378,14 +361,12 @@ class _$_editHospitalProfile implements _editHospitalProfile {
 
 abstract class _editHospitalProfile implements HospitalProfileEvent {
   const factory _editHospitalProfile(
-      {required final XFile imageFile,
-      required final String name,
+      {required final String name,
       required final String about,
       required final String address,
       required final String place,
       required final String mobile}) = _$_editHospitalProfile;
 
-  XFile get imageFile;
   String get name;
   String get about;
   String get address;

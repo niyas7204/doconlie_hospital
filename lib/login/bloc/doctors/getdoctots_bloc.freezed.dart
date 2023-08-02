@@ -32,13 +32,15 @@ mixin _$GetdoctorsEvent {
     required TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)
+            String about,
+            String id)
         editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,13 +59,15 @@ mixin _$GetdoctorsEvent {
     TResult? Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,13 +86,15 @@ mixin _$GetdoctorsEvent {
     TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,6 +103,8 @@ mixin _$GetdoctorsEvent {
     required TResult Function(_getDoctors value) getDoctors,
     required TResult Function(_addDoctor value) addDoctor,
     required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +112,8 @@ mixin _$GetdoctorsEvent {
     TResult? Function(_getDoctors value)? getDoctors,
     TResult? Function(_addDoctor value)? addDoctor,
     TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +121,8 @@ mixin _$GetdoctorsEvent {
     TResult Function(_getDoctors value)? getDoctors,
     TResult Function(_addDoctor value)? addDoctor,
     TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -186,13 +198,15 @@ class _$_getDoctors implements _getDoctors {
     required TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)
+            String about,
+            String id)
         editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
   }) {
     return getDoctors();
   }
@@ -214,13 +228,15 @@ class _$_getDoctors implements _getDoctors {
     TResult? Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
   }) {
     return getDoctors?.call();
   }
@@ -242,13 +258,15 @@ class _$_getDoctors implements _getDoctors {
     TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (getDoctors != null) {
@@ -263,6 +281,8 @@ class _$_getDoctors implements _getDoctors {
     required TResult Function(_getDoctors value) getDoctors,
     required TResult Function(_addDoctor value) addDoctor,
     required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
   }) {
     return getDoctors(this);
   }
@@ -273,6 +293,8 @@ class _$_getDoctors implements _getDoctors {
     TResult? Function(_getDoctors value)? getDoctors,
     TResult? Function(_addDoctor value)? addDoctor,
     TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
   }) {
     return getDoctors?.call(this);
   }
@@ -283,6 +305,8 @@ class _$_getDoctors implements _getDoctors {
     TResult Function(_getDoctors value)? getDoctors,
     TResult Function(_addDoctor value)? addDoctor,
     TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (getDoctors != null) {
@@ -451,13 +475,15 @@ class _$_addDoctor implements _addDoctor {
     required TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)
+            String about,
+            String id)
         editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
   }) {
     return addDoctor(name, email, password, department, qualification, fee,
         specialization, about);
@@ -480,13 +506,15 @@ class _$_addDoctor implements _addDoctor {
     TResult? Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
   }) {
     return addDoctor?.call(name, email, password, department, qualification,
         fee, specialization, about);
@@ -509,13 +537,15 @@ class _$_addDoctor implements _addDoctor {
     TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (addDoctor != null) {
@@ -531,6 +561,8 @@ class _$_addDoctor implements _addDoctor {
     required TResult Function(_getDoctors value) getDoctors,
     required TResult Function(_addDoctor value) addDoctor,
     required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
   }) {
     return addDoctor(this);
   }
@@ -541,6 +573,8 @@ class _$_addDoctor implements _addDoctor {
     TResult? Function(_getDoctors value)? getDoctors,
     TResult? Function(_addDoctor value)? addDoctor,
     TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
   }) {
     return addDoctor?.call(this);
   }
@@ -551,6 +585,8 @@ class _$_addDoctor implements _addDoctor {
     TResult Function(_getDoctors value)? getDoctors,
     TResult Function(_addDoctor value)? addDoctor,
     TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (addDoctor != null) {
@@ -593,12 +629,12 @@ abstract class _$$_editDoctorCopyWith<$Res> {
   $Res call(
       {String name,
       String email,
-      String password,
       String department,
       String qualification,
       String fee,
       String specialization,
-      String about});
+      String about,
+      String id});
 }
 
 /// @nodoc
@@ -614,12 +650,12 @@ class __$$_editDoctorCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? email = null,
-    Object? password = null,
     Object? department = null,
     Object? qualification = null,
     Object? fee = null,
     Object? specialization = null,
     Object? about = null,
+    Object? id = null,
   }) {
     return _then(_$_editDoctor(
       name: null == name
@@ -629,10 +665,6 @@ class __$$_editDoctorCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String,
       department: null == department
           ? _value.department
@@ -654,6 +686,10 @@ class __$$_editDoctorCopyWithImpl<$Res>
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -664,19 +700,17 @@ class _$_editDoctor implements _editDoctor {
   const _$_editDoctor(
       {required this.name,
       required this.email,
-      required this.password,
       required this.department,
       required this.qualification,
       required this.fee,
       required this.specialization,
-      required this.about});
+      required this.about,
+      required this.id});
 
   @override
   final String name;
   @override
   final String email;
-  @override
-  final String password;
   @override
   final String department;
   @override
@@ -687,10 +721,12 @@ class _$_editDoctor implements _editDoctor {
   final String specialization;
   @override
   final String about;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'GetdoctorsEvent.editDoctor(name: $name, email: $email, password: $password, department: $department, qualification: $qualification, fee: $fee, specialization: $specialization, about: $about)';
+    return 'GetdoctorsEvent.editDoctor(name: $name, email: $email, department: $department, qualification: $qualification, fee: $fee, specialization: $specialization, about: $about, id: $id)';
   }
 
   @override
@@ -700,8 +736,6 @@ class _$_editDoctor implements _editDoctor {
             other is _$_editDoctor &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.qualification, qualification) ||
@@ -709,12 +743,13 @@ class _$_editDoctor implements _editDoctor {
             (identical(other.fee, fee) || other.fee == fee) &&
             (identical(other.specialization, specialization) ||
                 other.specialization == specialization) &&
-            (identical(other.about, about) || other.about == about));
+            (identical(other.about, about) || other.about == about) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, password,
-      department, qualification, fee, specialization, about);
+  int get hashCode => Object.hash(runtimeType, name, email, department,
+      qualification, fee, specialization, about, id);
 
   @JsonKey(ignore: true)
   @override
@@ -739,16 +774,18 @@ class _$_editDoctor implements _editDoctor {
     required TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)
+            String about,
+            String id)
         editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
   }) {
-    return editDoctor(name, email, password, department, qualification, fee,
-        specialization, about);
+    return editDoctor(
+        name, email, department, qualification, fee, specialization, about, id);
   }
 
   @override
@@ -768,16 +805,18 @@ class _$_editDoctor implements _editDoctor {
     TResult? Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
   }) {
-    return editDoctor?.call(name, email, password, department, qualification,
-        fee, specialization, about);
+    return editDoctor?.call(
+        name, email, department, qualification, fee, specialization, about, id);
   }
 
   @override
@@ -797,18 +836,20 @@ class _$_editDoctor implements _editDoctor {
     TResult Function(
             String name,
             String email,
-            String password,
             String department,
             String qualification,
             String fee,
             String specialization,
-            String about)?
+            String about,
+            String id)?
         editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (editDoctor != null) {
-      return editDoctor(name, email, password, department, qualification, fee,
-          specialization, about);
+      return editDoctor(name, email, department, qualification, fee,
+          specialization, about, id);
     }
     return orElse();
   }
@@ -819,6 +860,8 @@ class _$_editDoctor implements _editDoctor {
     required TResult Function(_getDoctors value) getDoctors,
     required TResult Function(_addDoctor value) addDoctor,
     required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
   }) {
     return editDoctor(this);
   }
@@ -829,6 +872,8 @@ class _$_editDoctor implements _editDoctor {
     TResult? Function(_getDoctors value)? getDoctors,
     TResult? Function(_addDoctor value)? addDoctor,
     TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
   }) {
     return editDoctor?.call(this);
   }
@@ -839,6 +884,8 @@ class _$_editDoctor implements _editDoctor {
     TResult Function(_getDoctors value)? getDoctors,
     TResult Function(_addDoctor value)? addDoctor,
     TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
     required TResult orElse(),
   }) {
     if (editDoctor != null) {
@@ -852,23 +899,433 @@ abstract class _editDoctor implements GetdoctorsEvent {
   const factory _editDoctor(
       {required final String name,
       required final String email,
-      required final String password,
       required final String department,
       required final String qualification,
       required final String fee,
       required final String specialization,
-      required final String about}) = _$_editDoctor;
+      required final String about,
+      required final String id}) = _$_editDoctor;
 
   String get name;
   String get email;
-  String get password;
   String get department;
   String get qualification;
   String get fee;
   String get specialization;
   String get about;
+  String get id;
   @JsonKey(ignore: true)
   _$$_editDoctorCopyWith<_$_editDoctor> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_blocDoctorCopyWith<$Res> {
+  factory _$$_blocDoctorCopyWith(
+          _$_blocDoctor value, $Res Function(_$_blocDoctor) then) =
+      __$$_blocDoctorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$_blocDoctorCopyWithImpl<$Res>
+    extends _$GetdoctorsEventCopyWithImpl<$Res, _$_blocDoctor>
+    implements _$$_blocDoctorCopyWith<$Res> {
+  __$$_blocDoctorCopyWithImpl(
+      _$_blocDoctor _value, $Res Function(_$_blocDoctor) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_blocDoctor(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_blocDoctor implements _blocDoctor {
+  const _$_blocDoctor({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'GetdoctorsEvent.blockDoctor(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_blocDoctor &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_blocDoctorCopyWith<_$_blocDoctor> get copyWith =>
+      __$$_blocDoctorCopyWithImpl<_$_blocDoctor>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getDoctors,
+    required TResult Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)
+        addDoctor,
+    required TResult Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)
+        editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
+  }) {
+    return blockDoctor(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getDoctors,
+    TResult? Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)?
+        addDoctor,
+    TResult? Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)?
+        editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
+  }) {
+    return blockDoctor?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getDoctors,
+    TResult Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)?
+        addDoctor,
+    TResult Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)?
+        editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
+    required TResult orElse(),
+  }) {
+    if (blockDoctor != null) {
+      return blockDoctor(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_getDoctors value) getDoctors,
+    required TResult Function(_addDoctor value) addDoctor,
+    required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
+  }) {
+    return blockDoctor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_getDoctors value)? getDoctors,
+    TResult? Function(_addDoctor value)? addDoctor,
+    TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
+  }) {
+    return blockDoctor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_getDoctors value)? getDoctors,
+    TResult Function(_addDoctor value)? addDoctor,
+    TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
+    required TResult orElse(),
+  }) {
+    if (blockDoctor != null) {
+      return blockDoctor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _blocDoctor implements GetdoctorsEvent {
+  const factory _blocDoctor({required final String id}) = _$_blocDoctor;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$_blocDoctorCopyWith<_$_blocDoctor> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_unblocDoctorCopyWith<$Res> {
+  factory _$$_unblocDoctorCopyWith(
+          _$_unblocDoctor value, $Res Function(_$_unblocDoctor) then) =
+      __$$_unblocDoctorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$_unblocDoctorCopyWithImpl<$Res>
+    extends _$GetdoctorsEventCopyWithImpl<$Res, _$_unblocDoctor>
+    implements _$$_unblocDoctorCopyWith<$Res> {
+  __$$_unblocDoctorCopyWithImpl(
+      _$_unblocDoctor _value, $Res Function(_$_unblocDoctor) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_unblocDoctor(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_unblocDoctor implements _unblocDoctor {
+  const _$_unblocDoctor({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'GetdoctorsEvent.unblockDoctor(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_unblocDoctor &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_unblocDoctorCopyWith<_$_unblocDoctor> get copyWith =>
+      __$$_unblocDoctorCopyWithImpl<_$_unblocDoctor>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getDoctors,
+    required TResult Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)
+        addDoctor,
+    required TResult Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)
+        editDoctor,
+    required TResult Function(String id) blockDoctor,
+    required TResult Function(String id) unblockDoctor,
+  }) {
+    return unblockDoctor(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getDoctors,
+    TResult? Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)?
+        addDoctor,
+    TResult? Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)?
+        editDoctor,
+    TResult? Function(String id)? blockDoctor,
+    TResult? Function(String id)? unblockDoctor,
+  }) {
+    return unblockDoctor?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getDoctors,
+    TResult Function(
+            String name,
+            String email,
+            String password,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about)?
+        addDoctor,
+    TResult Function(
+            String name,
+            String email,
+            String department,
+            String qualification,
+            String fee,
+            String specialization,
+            String about,
+            String id)?
+        editDoctor,
+    TResult Function(String id)? blockDoctor,
+    TResult Function(String id)? unblockDoctor,
+    required TResult orElse(),
+  }) {
+    if (unblockDoctor != null) {
+      return unblockDoctor(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_getDoctors value) getDoctors,
+    required TResult Function(_addDoctor value) addDoctor,
+    required TResult Function(_editDoctor value) editDoctor,
+    required TResult Function(_blocDoctor value) blockDoctor,
+    required TResult Function(_unblocDoctor value) unblockDoctor,
+  }) {
+    return unblockDoctor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_getDoctors value)? getDoctors,
+    TResult? Function(_addDoctor value)? addDoctor,
+    TResult? Function(_editDoctor value)? editDoctor,
+    TResult? Function(_blocDoctor value)? blockDoctor,
+    TResult? Function(_unblocDoctor value)? unblockDoctor,
+  }) {
+    return unblockDoctor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_getDoctors value)? getDoctors,
+    TResult Function(_addDoctor value)? addDoctor,
+    TResult Function(_editDoctor value)? editDoctor,
+    TResult Function(_blocDoctor value)? blockDoctor,
+    TResult Function(_unblocDoctor value)? unblockDoctor,
+    required TResult orElse(),
+  }) {
+    if (unblockDoctor != null) {
+      return unblockDoctor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _unblocDoctor implements GetdoctorsEvent {
+  const factory _unblocDoctor({required final String id}) = _$_unblocDoctor;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$_unblocDoctorCopyWith<_$_unblocDoctor> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

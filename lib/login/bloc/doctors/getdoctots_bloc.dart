@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:doconline_hospital/core/response_handler/api_response.dart';
 
@@ -19,14 +21,15 @@ class GetdoctorsBloc extends Bloc<GetdoctorsEvent, GetdoctorsState> {
     });
     on<_addDoctor>((event, emit) async {
       await getDocters.addDoctor(
-          name: event.name,
-          email: event.email,
-          password: event.password,
-          department: event.department,
-          qualification: event.qualification,
-          fee: event.fee,
-          specialization: event.specialization,
-          about: event.about);
+        name: event.name,
+        email: event.email,
+        password: event.password,
+        department: event.department,
+        qualification: event.qualification,
+        fee: event.fee,
+        specialization: event.specialization,
+        about: event.about,
+      );
       final response = await getDocters.getDoctors();
       emit(response.fold((l) => state.copyWith(doctors: ApiResponse.error(l)),
           (r) => state.copyWith(doctors: ApiResponse.complete(r))));
@@ -35,12 +38,25 @@ class GetdoctorsBloc extends Bloc<GetdoctorsEvent, GetdoctorsState> {
       await getDocters.editDoctor(
           name: event.name,
           email: event.email,
-          password: event.password,
           department: event.department,
           qualification: event.qualification,
           fee: event.fee,
           specialization: event.specialization,
-          about: event.about);
+          about: event.about,
+          id: event.id);
+      final response = await getDocters.getDoctors();
+      log('bloc $response');
+      emit(response.fold((l) => state.copyWith(doctors: ApiResponse.error(l)),
+          (r) => state.copyWith(doctors: ApiResponse.complete(r))));
+    });
+    on<_blocDoctor>((event, emit) async {
+      await getDocters.blockDoctor(id: event.id);
+      final response = await getDocters.getDoctors();
+      emit(response.fold((l) => state.copyWith(doctors: ApiResponse.error(l)),
+          (r) => state.copyWith(doctors: ApiResponse.complete(r))));
+    });
+    on<_unblocDoctor>((event, emit) async {
+      await getDocters.blockDoctor(id: event.id);
       final response = await getDocters.getDoctors();
       emit(response.fold((l) => state.copyWith(doctors: ApiResponse.error(l)),
           (r) => state.copyWith(doctors: ApiResponse.complete(r))));

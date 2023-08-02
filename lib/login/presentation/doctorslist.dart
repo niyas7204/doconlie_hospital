@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:doconline_hospital/core/response_handler/status.dart';
 import 'package:doconline_hospital/login/bloc/doctors/getdoctots_bloc.dart';
 import 'package:doconline_hospital/login/presentation/editdoctorprofile.dart';
@@ -5,6 +6,7 @@ import 'package:doconline_hospital/login/presentation/widgets/common.dart';
 import 'package:doconline_hospital/login/presentation/widgets/docterscard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsList extends StatelessWidget {
   const DoctorsList({super.key});
@@ -17,41 +19,49 @@ class DoctorsList extends StatelessWidget {
     });
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 101, 131, 146),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Doctors',
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(20), color: Colors.white),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey.withOpacity(.5),
+                  side: BorderSide.none,
+                  shape: const StadiumBorder()),
+              child: Text('Add Doctors',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      fontSize: ScreenUtil().setSp(18))),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AddOrEditProfile(isAdd: true)));
+              },
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
         child: BlocBuilder<GetdoctorsBloc, GetdoctorsState>(
           builder: (context, state) {
             switch (state.doctors.status) {
-              case Status.error:
-                return const SizedBox();
-              case Status.loading:
+              case ResponseStatus.error:
+                log(state.doctors.failure.toString());
+                return netWorkError();
+              case ResponseStatus.loading:
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              case Status.complete:
+              case ResponseStatus.complete:
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Doctors',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      AddOrEditProfile(isAdd: true),
-                                ));
-                              },
-                              child: const Text('Add Doctors'))
-                        ],
-                      ),
                       Expanded(
                           child: ListView.separated(
                         separatorBuilder: (context, index) => space1h(),

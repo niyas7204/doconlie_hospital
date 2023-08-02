@@ -1,4 +1,5 @@
-import 'package:doconline_hospital/core/constants/colors.dart';
+import 'dart:developer';
+
 import 'package:doconline_hospital/login/data/model/bookingmodel.dart';
 import 'package:doconline_hospital/login/data/model/hospitalprofilemodel.dart';
 import 'package:doconline_hospital/login/presentation/edithospital.dart';
@@ -10,29 +11,27 @@ departmentCard(String dpName, String id, context) {
   return GestureDetector(
     onTap: () async {},
     child: Card(
-      child: SizedBox(
-        width: 105.w,
-        height: 200.h,
-        child: Column(
-          children: [
-            prefix.Image.asset(
-                'assets/image/stethoscope-icon-2316460_1280.png'),
-            Center(
-              child: SizedBox(
-                width: 100.w,
-                child: Text(
-                  dpName,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          child: Column(
+            children: [
+              prefix.Image.asset('assets/image/city-hospital-icon-5.png'),
+              const SizedBox(
+                height: 2,
               ),
-            ),
-          ],
+              Text(
+                dpName[0].toUpperCase() + dpName.substring(1),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     ),
@@ -103,7 +102,7 @@ sliverAppBar(String imgUrl, context, Hospital hospital) {
               backgroundColor: Colors.blueGrey.withOpacity(.7),
               side: BorderSide.none,
               shape: const StadiumBorder()),
-          child: const Text('EditProfile',
+          child: const Text('Edit Profile',
               style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
       ),

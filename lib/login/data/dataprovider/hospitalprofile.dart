@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cross_file/src/types/interface.dart';
@@ -36,12 +37,13 @@ class HospitalProfileImplimentation implements GetHospitalProfile {
   }
 
   @override
-  Future<Either<MainFailure, HospitalProfileModel>> editHospital(
-      {required String name,
-      required String about,
-      required String address,
-      required String place,
-      required String mobile}) async {
+  Future<Either<MainFailure, HospitalProfileModel>> editHospital({
+    required String name,
+    required String about,
+    required String address,
+    required String place,
+    required String mobile,
+  }) async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
 
     Cookie cookie = Cookie('hospitalToken', sharedPref.getString('token')!);
@@ -54,18 +56,20 @@ class HospitalProfileImplimentation implements GetHospitalProfile {
       'mobile': mobile
     };
     try {
-      final response = await dio.get(url,
+      final response = await dio.patch(url,
           data: requestBody,
           options:
               Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
-
+      log(response.toString());
       if (!response.data['err']) {
         final data = hospitalProfileModelFromJson(response.data);
+
         return right(data);
       } else {
         return left(const MainFailure.serverFailure(null));
       }
     } catch (e) {
+      log('error:$e');
       return left(const MainFailure.clientFailure());
     }
   }

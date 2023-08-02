@@ -1,5 +1,6 @@
 import 'package:doconline_hospital/login/data/model/doctersmodel.dart';
 import 'package:doconline_hospital/login/presentation/doctordetails.dart';
+import 'package:doconline_hospital/login/presentation/widgets/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/widgets.dart' as prefix;
@@ -11,7 +12,8 @@ doctersCard(List<Doctor> bstate, int index, BuildContext context) {
           builder: (context) => DoctorProfile(doctor: bstate[index])));
     },
     child: Container(
-      height: 95.h,
+      padding: const EdgeInsets.all(10),
+      height: 110.h,
       width: 340.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -21,28 +23,51 @@ doctersCard(List<Doctor> bstate, int index, BuildContext context) {
           ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-            child: prefix.Image.asset(
-              'assets/image/doctor.png',
+            child: prefix.Image.network(
+              bstate[index].image!.secureUrl!,
               fit: BoxFit.cover,
               width: 100.w,
               height: 80.h,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
+          space1w(),
+          Align(
+            alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  bstate[index].name!,
+                  bstate[index].name![0].toUpperCase() +
+                      bstate[index].name!.substring(1),
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   bstate[index].qualification!,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  bstate[index].email!,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  bstate[index].fees!.toString(),
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  bstate[index].block! ? 'blocked' : 'on',
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,

@@ -10,24 +10,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DashBoardPage extends StatelessWidget {
+  const DashBoardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<DashboardBloc>(context)
         .add(const DashboardEvent.getDashBoard());
     return Scaffold(
-        drawer: SafeArea(child: homeDrawer(context)),
+        drawer: SafeArea(child: homeDrawer(context, 'dasboard')),
         body: SafeArea(
           child: BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
               switch (state.dashBoardData.status) {
-                case Status.error:
-                  return const SizedBox();
-                case Status.loading:
-                  return const Center(child: CircularProgressIndicator());
-                case Status.complete:
+                case ResponseStatus.error:
+                  return netWorkError();
+                case ResponseStatus.loading:
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                case ResponseStatus.complete:
                   return SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(10),
@@ -68,14 +70,15 @@ class HomePage extends StatelessWidget {
                           dashBoard(
                               'Total Revenue',
                               state.dashBoardData.data!.booking!.totalRevenue!,
-                              Icons.monetization_on,
+                              Icons.currency_rupee,
                               false),
                           space1h(),
                           dashBoard(
                               'Total Doctors',
-                              state.dashBoardData.data!.booking!.totalBooking!,
+                              state.dashBoardData.data!.totalDoctors!,
                               Icons.medical_information,
                               false),
+                          space1h(),
                           header1('Analysis'),
                           barGraph(state.dashBoardData.data!),
                         ],
@@ -94,12 +97,18 @@ class HomePage extends StatelessWidget {
     return Builder(builder: (context) {
       final chart = createChartList(state);
       return Container(
-        height: 300,
+        width: double.infinity,
+        height: 400,
         padding: const EdgeInsets.all(16.0),
         child: SizedBox(
           width: 50, // Adjust the width of the bar chart as needed
           child: SfCartesianChart(
-            primaryXAxis: CategoryAxis(),
+            primaryXAxis: CategoryAxis(
+                labelRotation: 90,
+                desiredIntervals: 12,
+                labelPlacement: LabelPlacement.onTicks,
+                title: AxisTitle(text: 'Month', alignment: ChartAlignment.far)),
+            primaryYAxis: NumericAxis(title: AxisTitle(text: 'Income')),
             series: <ChartSeries>[
               ColumnSeries<ChartData, String>(
                 dataSource: chart,
@@ -123,8 +132,23 @@ class ChartData {
 
 createChartList(DashBoardModel state) {
   List<ChartData> chart = [];
+  List<String> months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'April',
+    'May',
+    'June',
+    'July',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+  chart.add(ChartData('', 0));
   for (var i = 0; i < state.monthlyData!.length; i++) {
-    chart.add(ChartData(i.toString(), state.monthlyData![i]));
+    chart.add(ChartData(months[i], state.monthlyData![i]));
   }
   return chart;
 }

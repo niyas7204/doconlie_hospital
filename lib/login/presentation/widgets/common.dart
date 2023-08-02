@@ -1,5 +1,7 @@
 import 'package:doconline_hospital/core/constants/colors.dart';
+import 'package:doconline_hospital/login/bloc/hospitalprofile/hospital_profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 text20(text) => Text(text,
@@ -10,14 +12,17 @@ text20(text) => Text(text,
 cText1(String text) => Text(
       text,
       style: const TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.w500,
-          color: Color.fromRGBO(31, 9, 79, 0.815)),
+        fontSize: 25,
+        fontWeight: FontWeight.w500,
+        color: Color.fromARGB(255, 78, 78, 78),
+      ),
     );
 labelText(String text) => Text(
       text,
       style: const TextStyle(
-          fontSize: 20, fontWeight: FontWeight.w600, color: baseColor),
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Color.fromARGB(179, 65, 64, 64)),
     );
 header1(String text) => Text(
       text,
@@ -44,7 +49,7 @@ textField(String hint, TextEditingController txtCntrlr) {
       ));
 }
 
-Future<dynamic> showdiologue(BuildContext context, String? errorText) {
+Future<dynamic> showErrordiolog(BuildContext context, String? errorText) {
   return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -57,6 +62,14 @@ Future<dynamic> showdiologue(BuildContext context, String? errorText) {
                   child: const Text('close'))
             ],
           ));
+}
+
+netWorkError() {
+  return SizedBox(
+    child: Center(
+      child: cText1('Network not found'),
+    ),
+  );
 }
 
 review(String profile, int rating, String review) {
@@ -99,7 +112,7 @@ starRating(int rating) {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemCount: 5,
-        itemBuilder: (context, index) => index <= rating
+        itemBuilder: (context, index) => index < rating
             ? const Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -111,4 +124,56 @@ starRating(int rating) {
       ),
     ),
   );
+}
+
+Future<dynamic> showprofileUpdatemdiologe(BuildContext context,
+    String? messageText, List<TextEditingController> controllers) {
+  return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            content: Text(messageText!),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('close')),
+              ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<HospitalProfileBloc>(context)
+                        .add(HospitalProfileEvent.editHospitalProfile(
+                      name: controllers[0].text,
+                      about: controllers[1].text,
+                      address: controllers[2].text,
+                      mobile: controllers[3].text,
+                      place: controllers[4].text,
+                    ));
+                  },
+                  child: const Text('confirm')),
+            ],
+          ));
+}
+
+Future<dynamic> showconfirmdiolog(
+  BuildContext context,
+  String? messageText,
+  Function onPressCallback,
+) {
+  return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            content: Text(messageText!),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('close')),
+              ElevatedButton(
+                  onPressed: () {
+                    onPressCallback();
+                  },
+                  child: const Text('confirm')),
+            ],
+          ));
 }

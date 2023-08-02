@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -21,7 +22,7 @@ class GetDashBoardImplimentation implements GetDashBoardService {
       final response = await dio.get(url,
           options:
               Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
-
+      log(response.toString());
       if (!response.data['err']) {
         final data = dashBoardModelFromJson(response.data);
         return right(data);
@@ -29,6 +30,7 @@ class GetDashBoardImplimentation implements GetDashBoardService {
         return left(const MainFailure.serverFailure(null));
       }
     } catch (e) {
+      log('error dash $e');
       return left(const MainFailure.clientFailure());
     }
   }

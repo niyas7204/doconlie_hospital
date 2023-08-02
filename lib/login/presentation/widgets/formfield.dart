@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:doconline_hospital/core/response_handler/status.dart';
 import 'package:doconline_hospital/login/bloc/departmet/department_bloc.dart';
+import 'package:doconline_hospital/login/data/model/hospitalprofilemodel.dart';
 import 'package:doconline_hospital/login/data/repository/createdropdownlist.dart';
 import 'package:doconline_hospital/login/presentation/widgets/common.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,13 @@ Widget textEditField(
   String label,
   TextEditingController controller,
 ) {
+  bool obscure = label == 'Password';
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       labelText(label),
       TextFormField(
+        obscureText: obscure,
         controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -45,15 +48,32 @@ hospialEditField(
   );
 }
 
-dropDownButton(String label, Function(String?) onChanged, String? departmetnt) {
+dropDownButton(
+  String label,
+  Function(String?) onChanged,
+  String? currentdepartment,
+) {
   return BlocBuilder<DepartmentBloc, DepartmentState>(
     builder: (context, state) {
       switch (state.departments.status) {
-        case Status.error:
+        case ResponseStatus.error:
           return const SizedBox();
-        case Status.loading:
-          return const CircularProgressIndicator();
-        case Status.complete:
+        case ResponseStatus.loading:
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        case ResponseStatus.complete:
+          if (currentdepartment != null) {
+            log('if');
+            for (var department in state.departments.data!.departments!) {
+              log('for');
+              if (department.name == currentdepartment) {
+                log('check');
+                log('dep ${department.name}');
+                onChanged(department.id);
+              }
+            }
+          }
           final list =
               creatDepartmentDropDown(state.departments.data!.departments!);
 
@@ -78,7 +98,7 @@ dropDownButton(String label, Function(String?) onChanged, String? departmetnt) {
                       child: Text(item['display'].toString()),
                     );
                   }).toList(),
-                  value: departmetnt,
+                  value: currentdepartment,
                   onChanged: onChanged,
                 ),
               ),

@@ -47,7 +47,7 @@ class GetDepartmentImplimentation implements GetDepartmentService {
           data: requestBody,
           options:
               Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
-      log('add ${response.toString()}');
+
       if (!response.data['err']) {
         return right(!response.data['err']);
       } else {

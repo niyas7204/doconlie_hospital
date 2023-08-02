@@ -7,8 +7,7 @@ createEditFormlist(Doctor doctorDetails) {
       TextEditingController(text: doctorDetails.name);
   TextEditingController emailController =
       TextEditingController(text: doctorDetails.email);
-  TextEditingController passwordController =
-      TextEditingController(text: doctorDetails.password);
+
   TextEditingController aboutController =
       TextEditingController(text: doctorDetails.about);
   TextEditingController feeController =
@@ -23,7 +22,6 @@ createEditFormlist(Doctor doctorDetails) {
     emailController,
     qualificationController,
     feeController,
-    passwordController,
     aboutController,
     specializationController,
   ];
@@ -38,12 +36,11 @@ createAddFormlist() {
   TextEditingController feeController = TextEditingController();
   TextEditingController qualificationController = TextEditingController();
   TextEditingController specializationController = TextEditingController();
-  TextEditingController departmentController = TextEditingController();
+
   List<TextEditingController> controllers = [
     nameController,
     emailController,
     qualificationController,
-    departmentController,
     feeController,
     passwordController,
     aboutController,
@@ -67,10 +64,10 @@ createHospitalEditFormlist(Hospital hospital) {
 
   List<TextEditingController> controllers = [
     nameController,
-    aboutController,
-    adressController,
+    placeController,
     mobileController,
-    placeController
+    adressController,
+    aboutController,
   ];
   return controllers;
 }

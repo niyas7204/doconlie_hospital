@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:doconline_hospital/core/constants/colors.dart';
 
+import 'package:doconline_hospital/core/response_handler/status.dart';
+
 import 'package:doconline_hospital/login/bloc/login/log_in_bloc.dart';
-import 'package:doconline_hospital/login/presentation/home.dart';
+import 'package:doconline_hospital/login/presentation/dashboard.dart';
 
 import 'package:doconline_hospital/login/presentation/widgets/common.dart';
 import 'package:doconline_hospital/login/presentation/widgets/logo.dart';
@@ -24,9 +26,11 @@ class LogInPage extends StatelessWidget {
       body: SafeArea(
         child: BlocListener<LogInBloc, LogInState>(
             listener: (context, state) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const HomePage(),
-              ));
+              if (state.logresponse!.status == ResponseStatus.complete) {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const DashBoardPage(),
+                ));
+              }
             },
             child: Stack(
               children: [
@@ -98,6 +102,6 @@ Future onPress(BuildContext pagecontext, String email, String password) async {
     BlocProvider.of<LogInBloc>(pagecontext)
         .add(LogInEvent.getLogin(email: email, password: password));
   } else {
-    showdiologue(pagecontext, 'fields mustnot be empty');
+    showErrordiolog(pagecontext, 'fields mustnot be empty');
   }
 }

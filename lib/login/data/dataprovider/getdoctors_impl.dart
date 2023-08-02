@@ -34,15 +34,16 @@ class GetDoctorsImplimentation implements GetDoctorService {
   }
 
   @override
-  Future<Either<MainFailure, bool>> addDoctor(
-      {required String name,
-      required String email,
-      required String password,
-      required String department,
-      required String qualification,
-      required String fee,
-      required String specialization,
-      required String about}) async {
+  Future<Either<MainFailure, bool>> addDoctor({
+    required String name,
+    required String email,
+    required String password,
+    required String department,
+    required String qualification,
+    required String fee,
+    required String specialization,
+    required String about,
+  }) async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     Cookie cookie = Cookie('hospitalToken', sharedPref.getString('token')!);
     String url = '$baseUrl/doctor';
@@ -78,25 +79,50 @@ class GetDoctorsImplimentation implements GetDoctorService {
   Future<Either<MainFailure, bool>> editDoctor(
       {required String name,
       required String email,
-      required String password,
       required String department,
       required String qualification,
       required String fee,
       required String specialization,
-      required String about}) async {
+      required String about,
+      required String id}) async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     Cookie cookie = Cookie('hospitalToken', sharedPref.getString('token')!);
     String url = '$baseUrl/doctor';
     final requestBody = {
       'email': email,
-      'password': password,
       'name': name,
       'department': department,
       'qualification': qualification,
       'specialization': specialization,
       'fees': fee,
       'about': about,
+      'id': id
     };
+    try {
+      final response = await dio.patch(url,
+          data: requestBody,
+          options:
+              Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
+      log('rsp $response');
+      log(response.statusCode.toString());
+      if (!response.data['err']) {
+        return right(!response.data['err']);
+      } else {
+        log('failure');
+        return left(const MainFailure.serverFailure(null));
+      }
+    } catch (e) {
+      log('error edit:$e');
+      return left(const MainFailure.clientFailure());
+    }
+  }
+
+  @override
+  Future<Either<MainFailure, bool>> blockDoctor({required String id}) async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    Cookie cookie = Cookie('hospitalToken', sharedPref.getString('token')!);
+    String url = '$baseUrl/doctor/block';
+    final requestBody = {'id': id};
     try {
       final response = await dio.patch(url,
           data: requestBody,
@@ -110,7 +136,30 @@ class GetDoctorsImplimentation implements GetDoctorService {
         return left(const MainFailure.serverFailure(null));
       }
     } catch (e) {
-      log('error add:$e');
+      log('error bloc:$e');
+      return left(const MainFailure.clientFailure());
+    }
+  }
+
+  @override
+  Future<Either<MainFailure, bool>> unblockDoctor({required String id}) async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    Cookie cookie = Cookie('hospitalToken', sharedPref.getString('token')!);
+    String url = '$baseUrl/doctor/unblock/$id';
+
+    try {
+      final response = await dio.patch(url,
+          options:
+              Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
+      log('rsp $response');
+      if (!response.data['err']) {
+        return right(!response.data['err']);
+      } else {
+        log('failure');
+        return left(const MainFailure.serverFailure(null));
+      }
+    } catch (e) {
+      log('error unbloc:$e');
       return left(const MainFailure.clientFailure());
     }
   }

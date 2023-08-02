@@ -21,9 +21,10 @@ class BookingImplimentation implements GetBookingService {
       final response = await dio.get(url,
           options:
               Options(headers: {'cookie': '${cookie.name}=${cookie.value}'}));
-
+      log(response.data.toString());
       if (!response.data['err']) {
         final data = bookingModelFromJson(response.data);
+        log('data${data.bookings![0].doctorId!.name}');
         return right(data);
       } else {
         log('serner');
@@ -33,5 +34,29 @@ class BookingImplimentation implements GetBookingService {
       log('error b:$e');
       return left(const MainFailure.clientFailure());
     }
+  }
+
+  @override
+  List<Booking> loadMore(
+      {required int present,
+      required int perpage,
+      required List<Booking> origianlist,
+      required List<Booking> loadedList}) {
+    if (present + perpage > origianlist.length) {
+      loadedList = [
+        ...loadedList,
+        ...origianlist.getRange(present, origianlist.length)
+      ];
+    } else {
+      try {
+        loadedList = [
+          ...loadedList,
+          ...origianlist.getRange(present, present + perpage)
+        ];
+      } catch (e) {
+        log('imp error $e');
+      }
+    }
+    return loadedList;
   }
 }
