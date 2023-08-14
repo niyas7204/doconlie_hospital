@@ -1,18 +1,22 @@
-import 'package:doconline_hospital/login/bloc/booking/booking_bloc.dart';
-import 'package:doconline_hospital/login/bloc/departmet/department_bloc.dart';
-import 'package:doconline_hospital/login/bloc/dashboard/dashboard_bloc.dart';
-import 'package:doconline_hospital/login/bloc/doctors/getdoctots_bloc.dart';
-import 'package:doconline_hospital/login/bloc/hospitalprofile/hospital_profile_bloc.dart';
-import 'package:doconline_hospital/login/bloc/login/log_in_bloc.dart';
-import 'package:doconline_hospital/login/data/dataprovider/getbookingimpl.dart';
-import 'package:doconline_hospital/login/data/dataprovider/getdashboard_impl.dart';
-import 'package:doconline_hospital/login/data/dataprovider/getdepartment.dart';
-import 'package:doconline_hospital/login/data/dataprovider/getdoctors_impl.dart';
-import 'package:doconline_hospital/login/data/dataprovider/hospitalprofile.dart';
-import 'package:doconline_hospital/login/data/dataprovider/login_impl.dart';
-import 'package:doconline_hospital/login/presentation/dashboard.dart';
+import 'dart:developer';
 
-import 'package:doconline_hospital/login/presentation/login_page.dart';
+import 'package:doconline_hospital/businesslogic/booking/booking_bloc.dart';
+import 'package:doconline_hospital/businesslogic/dashboard/dashboard_bloc.dart';
+import 'package:doconline_hospital/businesslogic/departmet/department_bloc.dart';
+import 'package:doconline_hospital/businesslogic/doctors/getdoctots_bloc.dart';
+import 'package:doconline_hospital/businesslogic/hospitalprofile/hospital_profile_bloc.dart';
+import 'package:doconline_hospital/businesslogic/login/log_in_bloc.dart';
+import 'package:doconline_hospital/businesslogic/schedule/schedule_bloc.dart';
+import 'package:doconline_hospital/data/dataprovider/getbookingimpl.dart';
+import 'package:doconline_hospital/data/dataprovider/getdashboard_impl.dart';
+import 'package:doconline_hospital/data/dataprovider/getdepartment.dart';
+import 'package:doconline_hospital/data/dataprovider/getdoctors_impl.dart';
+import 'package:doconline_hospital/data/dataprovider/getschedule.dart';
+import 'package:doconline_hospital/data/dataprovider/hospitalprofile.dart';
+import 'package:doconline_hospital/data/dataprovider/login_impl.dart';
+import 'package:doconline_hospital/presentation/dashboard.dart';
+
+import 'package:doconline_hospital/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,6 +52,9 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               HospitalProfileBloc(HospitalProfileImplimentation()),
         ),
+        BlocProvider(
+          create: (context) => ScheduleBloc(ScheduleImplimentation()),
+        ),
       ],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
@@ -58,11 +65,14 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!) {
+                  log('dash');
                   return const DashBoardPage();
                 } else {
+                  log('log');
                   return const LogInPage();
                 }
               } else {
+                log('dash else');
                 return const LogInPage();
               }
             },
